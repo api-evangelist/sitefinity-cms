@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "sitefinity": "https://www.progress.com/sitefinity-cms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "ContentItem": "sitefinity:ContentItem",
+    "Page": "schema:WebPage",
+    "MediaItem": "schema:MediaObject",
+    "Role": "schema:Role",
+    "TaxonomyItem": "sitefinity:TaxonomyItem",
+
+    "Id": "@id",
+    "Title": "schema:name",
+    "Content": "schema:articleBody",
+    "Summary": "schema:description",
+    "Status": "sitefinity:publicationStatus",
+    "PublicationDate": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:dateTime"
+    },
+    "LastModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "Author": "schema:author",
+    "UrlName": "schema:slug",
+    "Tags": "schema:keywords",
+    "Category": "schema:about",
+    "Language": "schema:inLanguage",
+
+    "FileName": "schema:name",
+    "MimeType": "schema:encodingFormat",
+    "TotalSize": "schema:contentSize",
+    "MediaUrl": "schema:contentUrl",
+    "AlternativeText": "schema:alternateName",
+
+    "NewsItem": "schema:NewsArticle",
+    "BlogPost": "schema:BlogPosting",
+    "Event": "schema:Event",
+    "Library": "schema:Collection"
+  }
+}

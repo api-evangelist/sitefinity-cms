@@ -1,0 +1,85 @@
+extends: spectral:oas
+rules:
+  sitefinity-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z\\s]*$"
+
+  sitefinity-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    severity: error
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  sitefinity-odata-collection-response:
+    description: List responses should use OData value wrapper with @odata.count
+    severity: info
+    given: "$.paths[*].get.responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  sitefinity-cookie-auth-scheme:
+    description: Sitefinity CMS uses cookie-based ASP.NET authentication
+    severity: info
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  sitefinity-delete-returns-204:
+    description: DELETE operations should return 204 No Content
+    severity: warn
+    given: "$.paths[*].delete.responses"
+    then:
+      field: "204"
+      function: truthy
+
+  sitefinity-post-has-request-body:
+    description: POST operations must include a request body
+    severity: error
+    given: "$.paths[*].post"
+    then:
+      field: requestBody
+      function: truthy
+
+  sitefinity-pascal-case-model-names:
+    description: Schema model names should use PascalCase (Sitefinity .NET convention)
+    severity: info
+    given: "$.components.schemas"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  sitefinity-servers-defined:
+    description: API must define at least one server
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  sitefinity-info-contact:
+    description: Info section must include contact details
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  sitefinity-tags-defined:
+    description: Root tags must be defined for all operation tags
+    severity: warn
+    given: "$.tags"
+    then:
+      function: truthy

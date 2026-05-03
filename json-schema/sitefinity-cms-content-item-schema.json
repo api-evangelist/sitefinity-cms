@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/sitefinity-cms/blob/main/json-schema/sitefinity-cms-content-item-schema.json",
+  "title": "Sitefinity CMS Content Item",
+  "description": "Schema for a Sitefinity CMS content item as returned by the Content REST API",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier of the content item (GUID)"
+    },
+    "Title": {
+      "type": "string",
+      "description": "Title of the content item",
+      "maxLength": 500
+    },
+    "Content": {
+      "type": "string",
+      "description": "Main content body in HTML format"
+    },
+    "Summary": {
+      "type": "string",
+      "description": "Short summary or lead paragraph"
+    },
+    "Status": {
+      "type": "string",
+      "description": "Publication lifecycle status",
+      "enum": ["Draft", "Published", "Unpublished"]
+    },
+    "PublicationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the item was or should be published"
+    },
+    "LastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of the last modification"
+    },
+    "Author": {
+      "type": "string",
+      "description": "Username of the content author"
+    },
+    "UrlName": {
+      "type": "string",
+      "description": "URL-friendly slug used in page routing",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "Tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Free-form tags associated with the content item"
+    },
+    "Category": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "Taxonomy category IDs assigned to the content item"
+    },
+    "Provider": {
+      "type": "string",
+      "description": "Sitefinity content provider name for multi-site configurations"
+    },
+    "Language": {
+      "type": "string",
+      "description": "Language code of the content version (e.g., en, fr-FR)",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+    }
+  },
+  "required": ["Id", "Title", "Status"],
+  "additionalProperties": true,
+  "examples": [
+    {
+      "Id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "Title": "Sitefinity 15.0 Release Announcement",
+      "Content": "<p>We are excited to announce the release of Sitefinity 15.0...</p>",
+      "Summary": "Major release with headless improvements and new REST API features.",
+      "Status": "Published",
+      "PublicationDate": "2026-01-15T09:00:00Z",
+      "LastModified": "2026-01-14T16:30:00Z",
+      "Author": "editor@example.com",
+      "UrlName": "sitefinity-15-release",
+      "Tags": ["release", "platform-update"],
+      "Category": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"],
+      "Language": "en"
+    }
+  ]
+}

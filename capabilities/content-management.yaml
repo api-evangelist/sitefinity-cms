@@ -1,0 +1,148 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sitefinity CMS Content Management"
+  description: >-
+    Unified capability for managing Sitefinity CMS content including news items,
+    blog posts, events, and media. Enables content operations teams and developers
+    to automate content lifecycle management, publish workflows, and headless
+    content delivery integrations.
+  tags:
+    - Sitefinity
+    - Content Management
+    - Headless CMS
+    - Publishing
+    - .NET
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SITEFINITY_AUTH_COOKIE: SITEFINITY_AUTH_COOKIE
+      SITEFINITY_BASE_URL: SITEFINITY_BASE_URL
+
+capability:
+  consumes:
+    - import: sitefinity-content
+      location: ./shared/content-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sitefinity-content-management-api
+      description: "Unified REST API for Sitefinity CMS content management."
+      resources:
+        - path: /v1/news-items
+          name: news-items
+          description: "Manage Sitefinity news content"
+          operations:
+            - method: GET
+              name: list-news-items
+              description: "List news items from Sitefinity CMS"
+              call: "sitefinity-content.list-news-items"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-news-item
+              description: "Create a new news item in Sitefinity CMS"
+              call: "sitefinity-content.create-news-item"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/blog-posts
+          name: blog-posts
+          description: "Manage Sitefinity blog posts"
+          operations:
+            - method: GET
+              name: list-blog-posts
+              description: "List blog posts from Sitefinity CMS"
+              call: "sitefinity-content.list-blog-posts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-blog-post
+              description: "Create a new blog post in Sitefinity CMS"
+              call: "sitefinity-content.create-blog-post"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/events
+          name: events
+          description: "Manage Sitefinity event content"
+          operations:
+            - method: GET
+              name: list-events
+              description: "List events from Sitefinity CMS"
+              call: "sitefinity-content.list-events"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-event
+              description: "Create a new event in Sitefinity CMS"
+              call: "sitefinity-content.create-event"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: sitefinity-content-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted Sitefinity CMS content management."
+      tools:
+        - name: list-news-items
+          description: "List news items from Sitefinity CMS with optional OData filtering"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sitefinity-content.list-news-items"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-news-item
+          description: "Create a new news content item in Sitefinity CMS"
+          call: "sitefinity-content.create-news-item"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-blog-posts
+          description: "List blog posts from Sitefinity CMS with optional OData filtering"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sitefinity-content.list-blog-posts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-blog-post
+          description: "Create a new blog post in Sitefinity CMS"
+          call: "sitefinity-content.create-blog-post"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-events
+          description: "List events from Sitefinity CMS with optional OData filtering"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "sitefinity-content.list-events"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-event
+          description: "Create a new event in Sitefinity CMS"
+          call: "sitefinity-content.create-event"
+          outputParameters:
+            - type: object
+              mapping: "$."

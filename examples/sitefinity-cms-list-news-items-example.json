@@ -1,0 +1,34 @@
+{
+  "title": "List News Items - Example Response",
+  "operation": "listNewsItems",
+  "api": "Sitefinity CMS Content API",
+  "request": {
+    "method": "GET",
+    "url": "https://your-site.sitefinity.com/api/default/newsitems?$top=5&$orderby=PublicationDate desc&$filter=Status eq 'Published'",
+    "headers": {
+      "Cookie": ".ASPXAUTH=<auth-token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "value": [
+        {
+          "Id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+          "Title": "Sitefinity 15.2 Released with Enhanced Headless Capabilities",
+          "Content": "<p>Progress is pleased to announce the release of Sitefinity 15.2...</p>",
+          "Summary": "New headless delivery improvements and REST API enhancements.",
+          "Status": "Published",
+          "PublicationDate": "2026-04-28T09:00:00Z",
+          "LastModified": "2026-04-27T15:45:00Z",
+          "Author": "editor@example.com",
+          "UrlName": "sitefinity-15-2-released",
+          "Tags": ["release", "headless", "rest-api"],
+          "Category": ["category-uuid-1"],
+          "Language": "en"
+        }
+      ],
+      "@odata.count": 87
+    }
+  }
+}

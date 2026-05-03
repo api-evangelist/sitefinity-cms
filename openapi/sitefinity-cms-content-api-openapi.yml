@@ -1,0 +1,471 @@
+openapi: 3.1.0
+info:
+  title: Sitefinity CMS Content API
+  description: >-
+    The Sitefinity CMS Content API provides RESTful access to all content types
+    defined in a Sitefinity instance. It exposes endpoints for creating, reading,
+    updating, deleting, publishing, and unpublishing content items across all
+    dynamic content types (news items, blog posts, events, etc.) and custom types
+    defined through the CMS content model. The API follows OData conventions for
+    filtering, sorting, and pagination. Authentication is handled via forms-based
+    authentication or token-based auth depending on the Sitefinity configuration.
+  version: 'v1'
+  contact:
+    name: Progress Sitefinity Support
+    url: https://www.progress.com/support
+  termsOfService: https://www.progress.com/legal/privacy-policy
+externalDocs:
+  description: Sitefinity CMS REST API Documentation
+  url: https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api
+servers:
+  - url: https://{site}.sitefinity.com/api/default
+    description: Sitefinity Instance Server
+    variables:
+      site:
+        description: The Sitefinity instance hostname
+        default: your-site
+tags:
+  - name: News Items
+    description: CRUD operations for news content items
+  - name: Blog Posts
+    description: CRUD operations for blog post content items
+  - name: Events
+    description: CRUD operations for event content items
+  - name: Content Items
+    description: Generic content item operations across all content types
+security:
+  - cookieAuth: []
+paths:
+  /newsitems:
+    get:
+      operationId: listNewsItems
+      summary: List News Items
+      description: >-
+        Retrieves a paginated list of news items from Sitefinity CMS. Supports OData
+        query options for filtering, sorting, and selecting specific fields. Returns
+        news items that are visible to the authenticated user.
+      tags:
+        - News Items
+      parameters:
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+        - $ref: '#/components/parameters/select'
+      responses:
+        '200':
+          description: A list of news items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItemListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createNewsItem
+      summary: Create News Item
+      description: >-
+        Creates a new news item in Sitefinity CMS. The request body must contain
+        the required fields for the news content type including title and content.
+        The item is created in draft state by default.
+      tags:
+        - News Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContentItemRequest'
+      responses:
+        '201':
+          description: News item created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /newsitems({id}):
+    get:
+      operationId: getNewsItem
+      summary: Get News Item
+      description: >-
+        Retrieves a specific news item by its unique identifier. Returns full item
+        data including all fields, metadata, and related content references.
+      tags:
+        - News Items
+      parameters:
+        - $ref: '#/components/parameters/contentId'
+      responses:
+        '200':
+          description: News item details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateNewsItem
+      summary: Update News Item
+      description: >-
+        Updates an existing news item. All fields in the request body replace the
+        current values. Use PATCH for partial updates.
+      tags:
+        - News Items
+      parameters:
+        - $ref: '#/components/parameters/contentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContentItemRequest'
+      responses:
+        '200':
+          description: News item updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNewsItem
+      summary: Delete News Item
+      description: >-
+        Permanently deletes a news item from Sitefinity CMS. Published items must
+        be unpublished before deletion in some configurations.
+      tags:
+        - News Items
+      parameters:
+        - $ref: '#/components/parameters/contentId'
+      responses:
+        '204':
+          description: News item deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /newsitems({id})/operation:
+    post:
+      operationId: publishNewsItem
+      summary: Publish or Unpublish News Item
+      description: >-
+        Performs a lifecycle operation on a news item, such as publishing or
+        unpublishing. The operation type is specified in the request body.
+      tags:
+        - News Items
+      parameters:
+        - $ref: '#/components/parameters/contentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentOperationRequest'
+      responses:
+        '200':
+          description: Operation performed successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /blogposts:
+    get:
+      operationId: listBlogPosts
+      summary: List Blog Posts
+      description: >-
+        Retrieves a paginated list of blog post content items. Supports OData
+        query options for filtering by blog, author, date range, and status.
+      tags:
+        - Blog Posts
+      parameters:
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+      responses:
+        '200':
+          description: A list of blog posts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItemListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBlogPost
+      summary: Create Blog Post
+      description: Creates a new blog post content item in draft state.
+      tags:
+        - Blog Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContentItemRequest'
+      responses:
+        '201':
+          description: Blog post created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /events:
+    get:
+      operationId: listEvents
+      summary: List Events
+      description: >-
+        Retrieves a paginated list of event content items. Supports OData filtering
+        for start date, end date, location, and status.
+      tags:
+        - Events
+      parameters:
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/orderby'
+      responses:
+        '200':
+          description: A list of events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItemListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createEvent
+      summary: Create Event
+      description: Creates a new event content item in Sitefinity CMS.
+      tags:
+        - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContentItemRequest'
+      responses:
+        '201':
+          description: Event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: .ASPXAUTH
+      description: >-
+        Sitefinity CMS uses ASP.NET forms authentication. Authenticate via the
+        /Sitefinity/Authenticate/SWT endpoint to obtain a token, or use the
+        /api/default/Authenticate endpoint for REST token-based auth.
+
+  parameters:
+    contentId:
+      name: id
+      in: path
+      description: The unique GUID identifier of the content item
+      required: true
+      schema:
+        type: string
+        format: uuid
+    top:
+      name: $top
+      in: query
+      description: Maximum number of items to return (OData $top)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 50
+    skip:
+      name: $skip
+      in: query
+      description: Number of items to skip for pagination (OData $skip)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g., Status eq 'Published')
+      required: false
+      schema:
+        type: string
+    orderby:
+      name: $orderby
+      in: query
+      description: OData orderby clause (e.g., PublicationDate desc)
+      required: false
+      schema:
+        type: string
+    select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return
+      required: false
+      schema:
+        type: string
+
+  responses:
+    Unauthorized:
+      description: Authentication is required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body or parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested content item was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ContentItem:
+      type: object
+      description: A Sitefinity CMS content item
+      properties:
+        Id:
+          type: string
+          format: uuid
+          description: Unique identifier of the content item
+        Title:
+          type: string
+          description: Title of the content item
+        Content:
+          type: string
+          description: Main content body (HTML)
+        Summary:
+          type: string
+          description: Short summary or lead paragraph
+        Status:
+          type: string
+          description: Publication status of the item
+          enum:
+            - Draft
+            - Published
+            - Unpublished
+        PublicationDate:
+          type: string
+          format: date-time
+          description: When the item was or should be published
+        LastModified:
+          type: string
+          format: date-time
+          description: When the item was last modified
+        Author:
+          type: string
+          description: Author of the content item
+        UrlName:
+          type: string
+          description: URL-friendly name used in page routing
+        Tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the content item
+        Category:
+          type: array
+          items:
+            type: string
+          description: Categories assigned to the content item
+
+    ContentItemListResponse:
+      type: object
+      description: A paginated list of content items
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+          description: Array of content items
+        "@odata.count":
+          type: integer
+          description: Total count of items matching the query
+
+    CreateContentItemRequest:
+      type: object
+      description: Request body for creating or updating a content item
+      required:
+        - Title
+      properties:
+        Title:
+          type: string
+          description: Title of the content item
+        Content:
+          type: string
+          description: Main content body in HTML
+        Summary:
+          type: string
+          description: Short summary or excerpt
+        UrlName:
+          type: string
+          description: URL-friendly name for routing
+        PublicationDate:
+          type: string
+          format: date-time
+          description: Scheduled publication date
+
+    ContentOperationRequest:
+      type: object
+      description: Request body for content lifecycle operations
+      required:
+        - operation
+      properties:
+        operation:
+          type: string
+          enum:
+            - Publish
+            - Unpublish
+          description: The lifecycle operation to perform
+
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message

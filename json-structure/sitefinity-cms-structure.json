@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sitefinity CMS Structure",
+  "description": "JSON structure documentation for Sitefinity CMS REST API core resources",
+  "version": "v1",
+  "resources": {
+    "ContentItem": {
+      "description": "A Sitefinity CMS content item (news, blog post, event, or custom type)",
+      "fields": {
+        "Id": { "type": "string", "format": "uuid", "description": "Unique GUID identifier" },
+        "Title": { "type": "string", "description": "Content title" },
+        "Content": { "type": "string", "description": "HTML body content" },
+        "Summary": { "type": "string", "description": "Short excerpt or summary" },
+        "Status": { "type": "string", "enum": ["Draft", "Published", "Unpublished"], "description": "Publication state" },
+        "PublicationDate": { "type": "string", "format": "date-time", "description": "Scheduled or actual publication date" },
+        "LastModified": { "type": "string", "format": "date-time", "description": "Last modification timestamp" },
+        "Author": { "type": "string", "description": "Content author username" },
+        "UrlName": { "type": "string", "description": "URL slug for routing" },
+        "Tags": { "type": "array", "items": "string", "description": "Free-form content tags" },
+        "Category": { "type": "array", "items": "uuid", "description": "Taxonomy category GUIDs" },
+        "Language": { "type": "string", "description": "Language code (en, fr-FR, etc.)" }
+      }
+    },
+    "Page": {
+      "description": "A Sitefinity CMS page in the site hierarchy",
+      "fields": {
+        "Id": { "type": "string", "format": "uuid", "description": "Unique GUID identifier" },
+        "Title": { "type": "string", "description": "Page title" },
+        "UrlName": { "type": "string", "description": "URL slug segment" },
+        "Description": { "type": "string", "description": "Page meta description" },
+        "Status": { "type": "string", "description": "Page publication status" },
+        "ParentId": { "type": "string", "format": "uuid", "description": "Parent page GUID for hierarchy" },
+        "NodeType": { "type": "string", "description": "Page node type (Standard, Redirect, Group)" },
+        "Template": { "type": "object", "description": "Page template reference" }
+      }
+    },
+    "Role": {
+      "description": "A Sitefinity CMS user role for authorization",
+      "fields": {
+        "Id": { "type": "string", "format": "uuid", "description": "Unique GUID identifier" },
+        "Name": { "type": "string", "description": "Role name" },
+        "Description": { "type": "string", "description": "Role description" },
+        "Users": { "type": "array", "items": "User", "description": "Users assigned to the role" }
+      }
+    },
+    "MediaItem": {
+      "description": "A media asset stored in a Sitefinity CMS library",
+      "fields": {
+        "Id": { "type": "string", "format": "uuid", "description": "Unique GUID identifier" },
+        "Title": { "type": "string", "description": "Asset title" },
+        "FileName": { "type": "string", "description": "Original filename" },
+        "Extension": { "type": "string", "description": "File extension (jpg, pdf, mp4, etc.)" },
+        "MimeType": { "type": "string", "description": "MIME type of the asset" },
+        "TotalSize": { "type": "integer", "description": "File size in bytes" },
+        "MediaUrl": { "type": "string", "description": "Public URL to access the media" },
+        "AlternativeText": { "type": "string", "description": "Alt text for accessibility" },
+        "Category": { "type": "array", "items": "uuid", "description": "Taxonomy category GUIDs" }
+      }
+    },
+    "TaxonomyItem": {
+      "description": "A taxonomy item (category or tag) used to classify content",
+      "fields": {
+        "Id": { "type": "string", "format": "uuid", "description": "Unique GUID identifier" },
+        "Title": { "type": "string", "description": "Taxonomy item title" },
+        "UrlName": { "type": "string", "description": "URL slug" },
+        "Description": { "type": "string", "description": "Description of the taxonomy item" },
+        "ParentId": { "type": "string", "format": "uuid", "description": "Parent taxonomy item for hierarchy" }
+      }
+    }
+  },
+  "queryConventions": {
+    "protocol": "OData v3",
+    "parameters": {
+      "$top": "Maximum number of items to return",
+      "$skip": "Number of items to skip (pagination)",
+      "$filter": "Filter expression (e.g., Status eq 'Published')",
+      "$orderby": "Sort clause (e.g., PublicationDate desc)",
+      "$select": "Comma-separated field list to return",
+      "$count": "Include total count in response"
+    }
+  }
+}

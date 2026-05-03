@@ -1,0 +1,174 @@
+aid: sitefinity-cms
+name: Sitefinity CMS Vocabulary
+description: >-
+  Domain vocabulary, taxonomy, and key terminology for the Sitefinity CMS platform
+  by Progress Software, covering content management, pages, media, taxonomies,
+  users, and the REST API model.
+created: '2026-05-02'
+modified: '2026-05-02'
+
+domains:
+  - name: Content Management
+    description: Core content model terminology for Sitefinity CMS
+    terms:
+      - term: Content Item
+        definition: >-
+          A structured data object in Sitefinity CMS representing a discrete piece
+          of managed content such as a news article, blog post, event, or custom
+          content type. Content items have a standard set of metadata fields and
+          user-defined fields from the content type definition.
+        aliases: [item, content object]
+        relatedTerms: [Content Type, Page, Status]
+
+      - term: Content Type
+        definition: >-
+          A schema definition in Sitefinity CMS that describes the fields, metadata,
+          and behavior of a category of content items. Built-in types include News,
+          Blog Posts, and Events; custom types can be created via the CMS backend.
+        aliases: [content module, dynamic module]
+        relatedTerms: [Content Item, Field]
+
+      - term: Status
+        definition: >-
+          The publication lifecycle state of a content item. Sitefinity content
+          items can be in Draft (not published), Published (live), or Unpublished
+          (removed from live) states.
+        aliases: [lifecycle status, publication state]
+        values: [Draft, Published, Unpublished]
+        relatedTerms: [Content Item, Publishing]
+
+      - term: UrlName
+        definition: >-
+          The URL-friendly identifier segment used in constructing the public URL
+          of a content item. The URL name must be unique within a content type and
+          follows URL-safe naming conventions (lowercase, hyphens).
+        aliases: [slug, URL slug]
+        relatedTerms: [Content Item, Page]
+
+      - term: Provider
+        definition: >-
+          A Sitefinity data provider that manages a partition of content storage.
+          Multi-site configurations may use multiple providers to isolate content
+          between sites or content sources.
+        aliases: [content provider, data provider]
+        relatedTerms: [Content Item, Multi-site]
+
+  - name: Pages
+    description: Page management terminology for Sitefinity CMS
+    terms:
+      - term: Page
+        definition: >-
+          A navigable URL in the Sitefinity site hierarchy associated with a template,
+          layout zones, and widget instances. Pages render content and are organized
+          in a tree structure with parent-child relationships.
+        aliases: [site page, CMS page]
+        relatedTerms: [Page Template, Widget, Page Node]
+
+      - term: Page Template
+        definition: >-
+          A reusable layout structure in Sitefinity that defines the HTML scaffold,
+          zones, and shared widgets applied to pages built from that template.
+        aliases: [template, layout template]
+        relatedTerms: [Page, Zone]
+
+      - term: Page Node
+        definition: >-
+          The underlying data record for a page in the Sitefinity page hierarchy.
+          Node types include Standard (normal page), Redirect, External URL, and Group.
+        aliases: [node, page record]
+        relatedTerms: [Page, Sitefinity]
+
+      - term: Widget
+        definition: >-
+          A reusable UI component placed in a page zone that renders content or
+          functionality. Sitefinity ships with built-in widgets for content lists,
+          navigation, forms, and commerce, with custom widgets possible via SDK.
+        aliases: [control, component]
+        relatedTerms: [Page, Zone, Template]
+
+  - name: Taxonomies
+    description: Classification terminology for Sitefinity CMS
+    terms:
+      - term: Taxonomy
+        definition: >-
+          A classification system in Sitefinity CMS that organizes content by
+          hierarchical categories (Classification) or flat tags (Tags). Taxonomies
+          are attached to content types and enable faceted filtering and navigation.
+        aliases: [classification, tagging system]
+        relatedTerms: [Category, Tag, Content Item]
+
+      - term: Category
+        definition: >-
+          A hierarchical taxonomy entry used to classify content items in Sitefinity.
+          Categories support parent-child relationships and are managed through the
+          Taxonomies API.
+        aliases: [classification category]
+        relatedTerms: [Taxonomy, Tag, Content Item]
+
+      - term: Tag
+        definition: >-
+          A flat (non-hierarchical) taxonomy entry used to associate keywords with
+          content items. Tags are stored as strings on content items and queried
+          via the $filter OData parameter.
+        relatedTerms: [Taxonomy, Category]
+
+  - name: Media
+    description: Media library terminology for Sitefinity CMS
+    terms:
+      - term: Media Library
+        definition: >-
+          A named container in Sitefinity CMS for organizing digital media assets
+          (images, documents, videos). Libraries can be public or restricted and
+          support hierarchical folder organization.
+        aliases: [library, asset library]
+        relatedTerms: [Media Item, Album]
+
+      - term: Media Item
+        definition: >-
+          A digital file (image, video, document, etc.) stored in a Sitefinity
+          media library. Media items have a public URL for delivery and metadata
+          such as alt text, title, and category.
+        aliases: [asset, media asset, file]
+        relatedTerms: [Media Library]
+
+  - name: Users and Roles
+    description: Identity and authorization terminology for Sitefinity CMS
+    terms:
+      - term: Role
+        definition: >-
+          A named permission group in Sitefinity CMS that controls access to backend
+          features, content, and API operations. Users are assigned roles to grant
+          or restrict their capabilities.
+        aliases: [permission group, user group]
+        relatedTerms: [User, Permission]
+
+      - term: Backend User
+        definition: >-
+          A Sitefinity CMS user with access to the backend administration interface.
+          Backend users can author and manage content based on their role assignments.
+        aliases: [admin user, CMS user]
+        relatedTerms: [Role, Frontend User]
+
+      - term: Frontend User
+        definition: >-
+          A registered end-user of the Sitefinity-powered website. Frontend users
+          can access restricted pages or user-specific features based on role assignments.
+        aliases: [site user, member]
+        relatedTerms: [Role, Backend User]
+
+  - name: API
+    description: REST API terminology for Sitefinity CMS
+    terms:
+      - term: OData
+        definition: >-
+          The query convention used by the Sitefinity REST API. OData parameters
+          ($top, $skip, $filter, $orderby, $select) control list responses, providing
+          server-side filtering, sorting, and pagination.
+        relatedTerms: [REST API, $filter, $top]
+
+      - term: Default Provider Endpoint
+        definition: >-
+          The base URL pattern for the Sitefinity REST API: /api/default/. All
+          content type endpoints are appended to this base path (e.g., /api/default/newsitems).
+        aliases: [API base path]
+        relatedTerms: [REST API, Provider]
