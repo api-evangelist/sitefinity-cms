@@ -4,103 +4,31 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Sitefinity CMS
 providerId: sitefinity-cms
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Content Management
-  - Headless CMS
-  - .NET
-  - REST
+  - DXP
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Sitefinity CMS API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+description: Sitefinity CMS is primarily a self-hosted (or Sitefinity Cloud-hosted) .NET CMS where
+  request-rate behavior depends on customer infrastructure rather than a vendor-imposed cap. Progress
+  does not publish a public rate-limits document for the Sitefinity Web Services API.
+sources:
+  - https://www.progress.com/sitefinity
+notes: |
+  Sitefinity is customer-deployed (or hosted in Sitefinity Cloud). Throughput limits are governed by
+  the customer's IIS / Sitefinity Cloud configuration rather than a Progress-published rate cap.
+responseCodes: {}
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Sitefinity CMS Content API
-      - Sitefinity CMS Pages API
-      - Sitefinity CMS Users and Roles API
-      - Sitefinity CMS Media API
-      - Sitefinity CMS Taxonomies API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Sitefinity CMS Content API
-      - Sitefinity CMS Pages API
-      - Sitefinity CMS Users and Roles API
-      - Sitefinity CMS Media API
-      - Sitefinity CMS Taxonomies API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Sitefinity CMS Content API
-      - Sitefinity CMS Pages API
-      - Sitefinity CMS Users and Roles API
-      - Sitefinity CMS Media API
-      - Sitefinity CMS Taxonomies API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Sitefinity CMS Content API
-      - Sitefinity CMS Pages API
-      - Sitefinity CMS Users and Roles API
-      - Sitefinity CMS Media API
-      - Sitefinity CMS Taxonomies API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Sitefinity CMS Content API
-      - Sitefinity CMS Pages API
-      - Sitefinity CMS Users and Roles API
-      - Sitefinity CMS Media API
-      - Sitefinity CMS Taxonomies API
+  - name: Self-Hosted / Sitefinity Cloud Throughput
+    scope: tenant
+    metric: varies
+    limit: 'governed by customer IIS / Sitefinity Cloud configuration'
+    notes: No Progress-published numeric rate cap; throughput is constrained by deployment topology.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers: []
+  - name: Customer-Managed Throttling
+    description: Because Sitefinity is customer-deployed, request throttling and capacity planning
+      are the responsibility of the customer or the Sitefinity Cloud-managed deployment.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

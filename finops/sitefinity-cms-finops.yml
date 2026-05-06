@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,157 +9,70 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Sitefinity CMS
 providerId: sitefinity-cms
-publisherName: Sitefinity CMS
-serviceCategory: API
+publisherName: Progress Software Corporation
+serviceCategory: Digital Experience Platform
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Content Management
-  - Headless CMS
-  - .NET
-  - REST
+  - DXP
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Sitefinity CMS API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps placeholder for Progress Sitefinity CMS: contact-sales licensing
+  with no public unit prices; Progress invoices the annual license plus optional cloud / add-on lines.'
+sources:
+  - https://www.progress.com/sitefinity
+notes: |
+  Progress does not publish public Sitefinity prices; meters below describe the typical invoice-line
+  shape (license, cloud capacity, add-ons) but unit prices are set per signed agreement.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Contact Sales
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Sitefinity CMS
-  ServiceCategory: Developer Tools / API
-  ProviderName: Sitefinity CMS
-  PublisherName: Sitefinity CMS
-  InvoiceIssuerName: Sitefinity CMS
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Digital Experience Platform
+  ProviderName: Progress
+  PublisherName: Progress Software Corporation
+  InvoiceIssuerName: Progress Software Corporation
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: license_subscription
+    description: Annual Sitefinity edition license fee (Standard / Professional / Enterprise).
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - edition
+  - name: sitefinity_cloud_capacity
+    description: Sitefinity Cloud-managed deployment capacity charge.
+    unit: varies
+    aggregation: max
+    dimensions:
+      - environment
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+  - name: addon_subscription
+    description: Add-on subscriptions (Sitefinity Insight, Commerce) negotiated alongside the core
+      license.
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Sitefinity CMS Content API
-    baseURL: https://your-site.sitefinity.com/api/default
-    tags:
-      - Content Management
-      - Content Types
-      - REST
-    serviceName: Sitefinity CMS Content API
-    serviceCategory: API
-  - name: Sitefinity CMS Pages API
-    baseURL: https://your-site.sitefinity.com/api/default
-    tags:
-      - Pages
-      - Content Management
-      - REST
-    serviceName: Sitefinity CMS Pages API
-    serviceCategory: API
-  - name: Sitefinity CMS Users and Roles API
-    baseURL: https://your-site.sitefinity.com/api/default
-    tags:
-      - Users
-      - Roles
-      - Identity
-      - REST
-    serviceName: Sitefinity CMS Users and Roles API
-    serviceCategory: API
-  - name: Sitefinity CMS Media API
-    baseURL: https://your-site.sitefinity.com/api/default
-    tags:
-      - Media
-      - Digital Assets
-      - Libraries
-      - REST
-    serviceName: Sitefinity CMS Media API
-    serviceCategory: API
-  - name: Sitefinity CMS Taxonomies API
-    baseURL: https://your-site.sitefinity.com/api/default
-    tags:
-      - Taxonomies
-      - Classification
-      - Content Management
-      - REST
-    serviceName: Sitefinity CMS Taxonomies API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers: []
+      - addon
+principles:
+  - name: Visibility
+    description: Track environment counts, hosted-cloud capacity, and add-on activation against the
+      signed Progress agreement; no consumption-API export is offered.
+  - name: Allocation
+    description: Allocate per brand or per digital property by mapping each Sitefinity site to its
+      consuming business unit on the signed order form.
+  - name: Optimization
+    description: Renewal is the optimization lever — reconcile actual environment counts and add-on
+      usage before the annual renewal to negotiate scope.
+  - name: Accountability
+    description: CMS platform owner reconciles the annual invoice against actual deployed sites,
+      environments, and add-ons.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
