@@ -129,3 +129,10 @@ common:
     url: vocabulary/sitefinity-cms-vocabulary.yml
   - type: Capabilities
     url: capabilities/content-management.yaml
+  - type: Integrations
+    url: https://www.progress.com/partners
+integrations:
+  - name: Become a Partner
+  - name: Partner Login
+  - name: Deal Registration New
+  - name: Distributor
