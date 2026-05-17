@@ -121,7 +121,7 @@ common:
     url: https://www.progress.com/blogs/sitefinity
   - type: Support
     url: https://www.progress.com/support
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/sitefinity-cms-context.jsonld
   - type: SpectralRules
     url: rules/sitefinity-cms-rules.yml
