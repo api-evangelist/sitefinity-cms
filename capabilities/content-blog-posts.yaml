@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sitefinity CMS Content API — Blog Posts
+  description: 'Sitefinity CMS Content API — Blog Posts. 2 operations. Lead operation: List Blog Posts. Self-contained Naftiko
+    capability covering one Sitefinity Cms business surface.'
+  tags:
+  - Sitefinity Cms
+  - Blog Posts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SITEFINITY_CMS_API_KEY: SITEFINITY_CMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: content-blog-posts
+    baseUri: https://{site}.sitefinity.com/api/default
+    description: Sitefinity CMS Content API — Blog Posts business capability. Self-contained, no shared references.
+    resources:
+    - name: blogposts
+      path: /blogposts
+      operations:
+      - name: listblogposts
+        method: GET
+        description: List Blog Posts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createblogpost
+        method: POST
+        description: Create Blog Post
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: .ASPXAUTH
+      value: '{{env.SITEFINITY_CMS_API_KEY}}'
+      placement: cookie
+  exposes:
+  - type: rest
+    namespace: content-blog-posts-rest
+    port: 8080
+    description: REST adapter for Sitefinity CMS Content API — Blog Posts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/blogposts
+      name: blogposts
+      description: REST surface for blogposts.
+      operations:
+      - method: GET
+        name: listblogposts
+        description: List Blog Posts
+        call: content-blog-posts.listblogposts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createblogpost
+        description: Create Blog Post
+        call: content-blog-posts.createblogpost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: content-blog-posts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sitefinity CMS Content API — Blog Posts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-blog-posts
+      description: List Blog Posts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: content-blog-posts.listblogposts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-blog-post
+      description: Create Blog Post
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: content-blog-posts.createblogpost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

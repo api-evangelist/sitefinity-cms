@@ -1,0 +1,241 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sitefinity CMS Content API — News Items
+  description: 'Sitefinity CMS Content API — News Items. 6 operations. Lead operation: List News Items. Self-contained Naftiko
+    capability covering one Sitefinity Cms business surface.'
+  tags:
+  - Sitefinity Cms
+  - News Items
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SITEFINITY_CMS_API_KEY: SITEFINITY_CMS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: content-news-items
+    baseUri: https://{site}.sitefinity.com/api/default
+    description: Sitefinity CMS Content API — News Items business capability. Self-contained, no shared references.
+    resources:
+    - name: newsitems
+      path: /newsitems
+      operations:
+      - name: listnewsitems
+        method: GET
+        description: List News Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createnewsitem
+        method: POST
+        description: Create News Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: newsitems({id})
+      path: /newsitems({id})
+      operations:
+      - name: getnewsitem
+        method: GET
+        description: Get News Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatenewsitem
+        method: PUT
+        description: Update News Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletenewsitem
+        method: DELETE
+        description: Delete News Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: newsitems({id})-operation
+      path: /newsitems({id})/operation
+      operations:
+      - name: publishnewsitem
+        method: POST
+        description: Publish or Unpublish News Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: .ASPXAUTH
+      value: '{{env.SITEFINITY_CMS_API_KEY}}'
+      placement: cookie
+  exposes:
+  - type: rest
+    namespace: content-news-items-rest
+    port: 8080
+    description: REST adapter for Sitefinity CMS Content API — News Items. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/newsitems
+      name: newsitems
+      description: REST surface for newsitems.
+      operations:
+      - method: GET
+        name: listnewsitems
+        description: List News Items
+        call: content-news-items.listnewsitems
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createnewsitem
+        description: Create News Item
+        call: content-news-items.createnewsitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/newsitems-id
+      name: newsitems-id
+      description: REST surface for newsitems({id}).
+      operations:
+      - method: GET
+        name: getnewsitem
+        description: Get News Item
+        call: content-news-items.getnewsitem
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatenewsitem
+        description: Update News Item
+        call: content-news-items.updatenewsitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletenewsitem
+        description: Delete News Item
+        call: content-news-items.deletenewsitem
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/newsitems-id/operation
+      name: newsitems-id-operation
+      description: REST surface for newsitems({id})-operation.
+      operations:
+      - method: POST
+        name: publishnewsitem
+        description: Publish or Unpublish News Item
+        call: content-news-items.publishnewsitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: content-news-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sitefinity CMS Content API — News Items. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-news-items
+      description: List News Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: content-news-items.listnewsitems
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-news-item
+      description: Create News Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: content-news-items.createnewsitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-news-item
+      description: Get News Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: content-news-items.getnewsitem
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-news-item
+      description: Update News Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: content-news-items.updatenewsitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-news-item
+      description: Delete News Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: content-news-items.deletenewsitem
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publish-unpublish-news-item
+      description: Publish or Unpublish News Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: content-news-items.publishnewsitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
