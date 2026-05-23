@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentOperationRequest",
+  "title": "ContentOperationRequest",
+  "type": "object",
+  "description": "Request body for content lifecycle operations",
+  "required": [
+    "operation"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "Publish",
+        "Unpublish"
+      ],
+      "description": "The lifecycle operation to perform"
+    }
+  }
+}

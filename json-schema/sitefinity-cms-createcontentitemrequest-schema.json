@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateContentItemRequest",
+  "title": "CreateContentItemRequest",
+  "type": "object",
+  "description": "Request body for creating or updating a content item",
+  "required": [
+    "Title"
+  ],
+  "properties": {
+    "Title": {
+      "type": "string",
+      "description": "Title of the content item"
+    },
+    "Content": {
+      "type": "string",
+      "description": "Main content body in HTML"
+    },
+    "Summary": {
+      "type": "string",
+      "description": "Short summary or excerpt"
+    },
+    "UrlName": {
+      "type": "string",
+      "description": "URL-friendly name for routing"
+    },
+    "PublicationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled publication date"
+    }
+  }
+}

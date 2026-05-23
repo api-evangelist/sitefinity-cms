@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentItem",
+  "title": "ContentItem",
+  "type": "object",
+  "description": "A Sitefinity CMS content item",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier of the content item"
+    },
+    "Title": {
+      "type": "string",
+      "description": "Title of the content item"
+    },
+    "Content": {
+      "type": "string",
+      "description": "Main content body (HTML)"
+    },
+    "Summary": {
+      "type": "string",
+      "description": "Short summary or lead paragraph"
+    },
+    "Status": {
+      "type": "string",
+      "description": "Publication status of the item",
+      "enum": [
+        "Draft",
+        "Published",
+        "Unpublished"
+      ]
+    },
+    "PublicationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the item was or should be published"
+    },
+    "LastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the item was last modified"
+    },
+    "Author": {
+      "type": "string",
+      "description": "Author of the content item"
+    },
+    "UrlName": {
+      "type": "string",
+      "description": "URL-friendly name used in page routing"
+    },
+    "Tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the content item"
+    },
+    "Category": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Categories assigned to the content item"
+    }
+  }
+}
