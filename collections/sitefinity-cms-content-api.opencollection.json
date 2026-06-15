@@ -1,0 +1,288 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sitefinity CMS Content API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": ".ASPXAUTH",
+      "value": "{{.ASPXAUTH}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "News Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List News Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}.sitefinity.com/api/default/newsitems",
+            "params": [
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (OData $top)"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip for pagination (OData $skip)"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Published')"
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData orderby clause (e.g., PublicationDate desc)"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of news items from Sitefinity CMS. Supports OData query options for filtering, sorting, and selecting specific fields. Returns news items that are visible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create News Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}.sitefinity.com/api/default/newsitems",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new news item in Sitefinity CMS. The request body must contain the required fields for the news content type including title and content. The item is created in draft state by default."
+        },
+        {
+          "info": {
+            "name": "Get News Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}.sitefinity.com/api/default/newsitems(:id)",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique GUID identifier of the content item"
+              }
+            ]
+          },
+          "docs": "Retrieves a specific news item by its unique identifier. Returns full item data including all fields, metadata, and related content references."
+        },
+        {
+          "info": {
+            "name": "Update News Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{site}.sitefinity.com/api/default/newsitems(:id)",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique GUID identifier of the content item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing news item. All fields in the request body replace the current values. Use PATCH for partial updates."
+        },
+        {
+          "info": {
+            "name": "Delete News Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{site}.sitefinity.com/api/default/newsitems(:id)",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique GUID identifier of the content item"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a news item from Sitefinity CMS. Published items must be unpublished before deletion in some configurations."
+        },
+        {
+          "info": {
+            "name": "Publish or Unpublish News Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}.sitefinity.com/api/default/newsitems(:id)/operation",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique GUID identifier of the content item"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a lifecycle operation on a news item, such as publishing or unpublishing. The operation type is specified in the request body."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Blog Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Blog Posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}.sitefinity.com/api/default/blogposts",
+            "params": [
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (OData $top)"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip for pagination (OData $skip)"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Published')"
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData orderby clause (e.g., PublicationDate desc)"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of blog post content items. Supports OData query options for filtering by blog, author, date range, and status."
+        },
+        {
+          "info": {
+            "name": "Create Blog Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}.sitefinity.com/api/default/blogposts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new blog post content item in draft state."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}.sitefinity.com/api/default/events",
+            "params": [
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (OData $top)"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip for pagination (OData $skip)"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Published')"
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData orderby clause (e.g., PublicationDate desc)"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of event content items. Supports OData filtering for start date, end date, location, and status."
+        },
+        {
+          "info": {
+            "name": "Create Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}.sitefinity.com/api/default/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new event content item in Sitefinity CMS."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2300 @@
+{
+  "item": [
+    {
+      "id": "8f6e796c-e960-4486-a1d4-6faedd8bd320",
+      "name": "News Items",
+      "description": {
+        "content": "CRUD operations for news content items",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ef38d930-f713-4cf8-b770-3a6b6ed11c32",
+          "name": "List News Items",
+          "request": {
+            "name": "List News Items",
+            "description": {
+              "content": "Retrieves a paginated list of news items from Sitefinity CMS. Supports OData query options for filtering, sorting, and selecting specific fields. Returns news items that are visible to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsitems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "50",
+                  "description": "Maximum number of items to return (OData $top)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of items to skip for pagination (OData $skip)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., Status eq 'Published')"
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData orderby clause (e.g., PublicationDate desc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f419c04-e715-4747-b868-ee3fd2a8bff7",
+              "name": "A list of news items",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"Id\": \"e0ebde2c-aa82-4a2b-01c6-3f861c06f040\",\n      \"Title\": \"string\",\n      \"Content\": \"string\",\n      \"Summary\": \"string\",\n      \"Status\": \"Unpublished\",\n      \"PublicationDate\": \"1952-11-19T15:29:02.813Z\",\n      \"LastModified\": \"1973-10-05T12:11:13.783Z\",\n      \"Author\": \"string\",\n      \"UrlName\": \"string\",\n      \"Tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Category\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"Id\": \"ada80145-1904-92bb-af61-e2d1a110c24d\",\n      \"Title\": \"string\",\n      \"Content\": \"string\",\n      \"Summary\": \"string\",\n      \"Status\": \"Draft\",\n      \"PublicationDate\": \"1989-07-14T17:40:20.168Z\",\n      \"LastModified\": \"1959-10-08T12:59:39.312Z\",\n      \"Author\": \"string\",\n      \"UrlName\": \"string\",\n      \"Tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Category\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"@odata.count\": 5761\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab16c2a9-9897-4957-8e7f-6bac6e400a0d",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c94edb25-916d-4ac5-9d15-3faacc5d5794",
+          "name": "Create News Item",
+          "request": {
+            "name": "Create News Item",
+            "description": {
+              "content": "Creates a new news item in Sitefinity CMS. The request body must contain the required fields for the news content type including title and content. The item is created in draft state by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsitems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2868f798-71f0-44d1-8b16-c5022a5aec85",
+              "name": "News item created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8949dfda-44ee-fbae-b636-e904f6ada6f7\",\n  \"Title\": \"string\",\n  \"Content\": \"string\",\n  \"Summary\": \"string\",\n  \"Status\": \"Draft\",\n  \"PublicationDate\": \"1961-09-06T18:34:35.739Z\",\n  \"LastModified\": \"1948-03-13T04:48:11.552Z\",\n  \"Author\": \"string\",\n  \"UrlName\": \"string\",\n  \"Tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Category\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e184ae6-623f-4b13-894e-fc41966aa25d",
+              "name": "The request body or parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1c05088-d78c-41a3-a857-5459756b697b",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f67dfbb8-0f37-4fd1-a1d3-feb83725f3ab",
+          "name": "Get News Item",
+          "request": {
+            "name": "Get News Item",
+            "description": {
+              "content": "Retrieves a specific news item by its unique identifier. Returns full item data including all fields, metadata, and related content references.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsitems({{id}})"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0825d71d-95d0-4a36-8c95-3ca815bfec9c",
+              "name": "News item details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8949dfda-44ee-fbae-b636-e904f6ada6f7\",\n  \"Title\": \"string\",\n  \"Content\": \"string\",\n  \"Summary\": \"string\",\n  \"Status\": \"Draft\",\n  \"PublicationDate\": \"1961-09-06T18:34:35.739Z\",\n  \"LastModified\": \"1948-03-13T04:48:11.552Z\",\n  \"Author\": \"string\",\n  \"UrlName\": \"string\",\n  \"Tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Category\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "125647f4-0b0d-43c9-b479-60dcdf10be8f",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deea97fc-8477-47e2-999f-4f0dc65ad487",
+              "name": "The requested content item was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a82e792-c966-4fe2-9983-8589a9c1442c",
+          "name": "Update News Item",
+          "request": {
+            "name": "Update News Item",
+            "description": {
+              "content": "Updates an existing news item. All fields in the request body replace the current values. Use PATCH for partial updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsitems({{id}})"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e446c60-bdfd-4ffb-b01b-68164129265c",
+              "name": "News item updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8949dfda-44ee-fbae-b636-e904f6ada6f7\",\n  \"Title\": \"string\",\n  \"Content\": \"string\",\n  \"Summary\": \"string\",\n  \"Status\": \"Draft\",\n  \"PublicationDate\": \"1961-09-06T18:34:35.739Z\",\n  \"LastModified\": \"1948-03-13T04:48:11.552Z\",\n  \"Author\": \"string\",\n  \"UrlName\": \"string\",\n  \"Tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Category\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b079735-cfa9-41bc-a675-02f1e8f8ab71",
+              "name": "The request body or parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b32169f-c735-4de8-bdd1-84f7a200530a",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96520e60-0a84-4710-b77e-c75851abdcf3",
+              "name": "The requested content item was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d21b09af-4dd8-4140-901c-36fdbeccaea8",
+          "name": "Delete News Item",
+          "request": {
+            "name": "Delete News Item",
+            "description": {
+              "content": "Permanently deletes a news item from Sitefinity CMS. Published items must be unpublished before deletion in some configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsitems({{id}})"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "388e17e4-0b7f-4d9d-be7d-bb351a948f91",
+              "name": "News item deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "17664292-dffb-4d6c-9106-3cbb787d8910",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7012781-a8db-4cd7-bef2-975533caaa01",
+              "name": "The requested content item was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4601924c-33e9-40fe-9c91-8b6d257fd716",
+          "name": "Publish or Unpublish News Item",
+          "request": {
+            "name": "Publish or Unpublish News Item",
+            "description": {
+              "content": "Performs a lifecycle operation on a news item, such as publishing or unpublishing. The operation type is specified in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsitems({{id}})",
+                "operation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operation\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2eaa966d-eccd-435c-9aa4-3dde302e0ff9",
+              "name": "Operation performed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})",
+                    "operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89a03400-2d4c-4e7a-b083-a307bcdb4a39",
+              "name": "The request body or parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})",
+                    "operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e9c133c-7995-4744-a8c5-9c30ef7d7afe",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsitems({{id}})",
+                    "operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "efa21a5d-4286-445e-99ad-862011f5f7ca",
+      "name": "Blog Posts",
+      "description": {
+        "content": "CRUD operations for blog post content items",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28d5c2ca-b1cd-42e6-b4ab-ddd86e20fda8",
+          "name": "List Blog Posts",
+          "request": {
+            "name": "List Blog Posts",
+            "description": {
+              "content": "Retrieves a paginated list of blog post content items. Supports OData query options for filtering by blog, author, date range, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blogposts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "50",
+                  "description": "Maximum number of items to return (OData $top)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of items to skip for pagination (OData $skip)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., Status eq 'Published')"
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData orderby clause (e.g., PublicationDate desc)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85bf1726-ba31-4970-9168-4eefa4d6e12d",
+              "name": "A list of blog posts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blogposts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"Id\": \"e0ebde2c-aa82-4a2b-01c6-3f861c06f040\",\n      \"Title\": \"string\",\n      \"Content\": \"string\",\n      \"Summary\": \"string\",\n      \"Status\": \"Unpublished\",\n      \"PublicationDate\": \"1952-11-19T15:29:02.813Z\",\n      \"LastModified\": \"1973-10-05T12:11:13.783Z\",\n      \"Author\": \"string\",\n      \"UrlName\": \"string\",\n      \"Tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Category\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"Id\": \"ada80145-1904-92bb-af61-e2d1a110c24d\",\n      \"Title\": \"string\",\n      \"Content\": \"string\",\n      \"Summary\": \"string\",\n      \"Status\": \"Draft\",\n      \"PublicationDate\": \"1989-07-14T17:40:20.168Z\",\n      \"LastModified\": \"1959-10-08T12:59:39.312Z\",\n      \"Author\": \"string\",\n      \"UrlName\": \"string\",\n      \"Tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Category\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"@odata.count\": 5761\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31479825-509f-41d1-a3bf-c0b08f2eacca",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blogposts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14274e2d-ce08-4323-9e8a-536b7d625f90",
+          "name": "Create Blog Post",
+          "request": {
+            "name": "Create Blog Post",
+            "description": {
+              "content": "Creates a new blog post content item in draft state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "blogposts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ccd7588-7fcc-42ee-bb34-45495fd244a9",
+              "name": "Blog post created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blogposts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8949dfda-44ee-fbae-b636-e904f6ada6f7\",\n  \"Title\": \"string\",\n  \"Content\": \"string\",\n  \"Summary\": \"string\",\n  \"Status\": \"Draft\",\n  \"PublicationDate\": \"1961-09-06T18:34:35.739Z\",\n  \"LastModified\": \"1948-03-13T04:48:11.552Z\",\n  \"Author\": \"string\",\n  \"UrlName\": \"string\",\n  \"Tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Category\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a22760a-8808-4197-b817-f40816411bf7",
+              "name": "The request body or parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blogposts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "512aff4a-c62c-4f40-aeb1-c7fe0d7e4be6",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blogposts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a2fcbff0-d4c5-4a77-af4c-5a04aa124478",
+      "name": "Events",
+      "description": {
+        "content": "CRUD operations for event content items",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "602345a2-51da-4a3f-83f0-a49b50098a40",
+          "name": "List Events",
+          "request": {
+            "name": "List Events",
+            "description": {
+              "content": "Retrieves a paginated list of event content items. Supports OData filtering for start date, end date, location, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "50",
+                  "description": "Maximum number of items to return (OData $top)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of items to skip for pagination (OData $skip)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., Status eq 'Published')"
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "OData orderby clause (e.g., PublicationDate desc)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dccc115c-83f4-43ee-b45d-aa551c61a370",
+              "name": "A list of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"Id\": \"e0ebde2c-aa82-4a2b-01c6-3f861c06f040\",\n      \"Title\": \"string\",\n      \"Content\": \"string\",\n      \"Summary\": \"string\",\n      \"Status\": \"Unpublished\",\n      \"PublicationDate\": \"1952-11-19T15:29:02.813Z\",\n      \"LastModified\": \"1973-10-05T12:11:13.783Z\",\n      \"Author\": \"string\",\n      \"UrlName\": \"string\",\n      \"Tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Category\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"Id\": \"ada80145-1904-92bb-af61-e2d1a110c24d\",\n      \"Title\": \"string\",\n      \"Content\": \"string\",\n      \"Summary\": \"string\",\n      \"Status\": \"Draft\",\n      \"PublicationDate\": \"1989-07-14T17:40:20.168Z\",\n      \"LastModified\": \"1959-10-08T12:59:39.312Z\",\n      \"Author\": \"string\",\n      \"UrlName\": \"string\",\n      \"Tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Category\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"@odata.count\": 5761\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c16350c8-e5aa-4782-b500-371fa64cf160",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "502bc317-8972-4a76-928a-c2bbf226534b",
+          "name": "Create Event",
+          "request": {
+            "name": "Create Event",
+            "description": {
+              "content": "Creates a new event content item in Sitefinity CMS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Sitefinity instance hostname",
+                  "type": "any",
+                  "value": "{{site}}",
+                  "key": "site"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55878234-cfb9-4570-b544-b1f85b74eb89",
+              "name": "Event created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Id\": \"8949dfda-44ee-fbae-b636-e904f6ada6f7\",\n  \"Title\": \"string\",\n  \"Content\": \"string\",\n  \"Summary\": \"string\",\n  \"Status\": \"Draft\",\n  \"PublicationDate\": \"1961-09-06T18:34:35.739Z\",\n  \"LastModified\": \"1948-03-13T04:48:11.552Z\",\n  \"Author\": \"string\",\n  \"UrlName\": \"string\",\n  \"Tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Category\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0759173-1553-4403-a9b8-4483607c7920",
+              "name": "The request body or parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "929a51f1-d81a-4f9e-bd69-e6a2a27ec671",
+              "name": "Authentication is required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Sitefinity instance hostname",
+                      "type": "any",
+                      "value": "{{site}}",
+                      "key": "site"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": ".ASPXAUTH",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Title\": \"<string>\",\n  \"Content\": \"<string>\",\n  \"Summary\": \"<string>\",\n  \"UrlName\": \"<string>\",\n  \"PublicationDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e7dfd43b-d86d-44fa-9351-36f9973264c2",
+      "name": "Content Items",
+      "description": {
+        "content": "Generic content item operations across all content types",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Sitefinity instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-site",
+      "key": "site"
+    },
+    {
+      "type": "string",
+      "value": "https://{{site}}.sitefinity.com/api/default",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique GUID identifier of the content item",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<uuid>",
+      "key": "id"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": ".ASPXAUTH"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b09f793-0c33-4bc6-809f-1a3967edbc3b",
+    "name": "Sitefinity CMS Content API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Sitefinity CMS Content API provides RESTful access to all content types defined in a Sitefinity instance. It exposes endpoints for creating, reading, updating, deleting, publishing, and unpublishing content items across all dynamic content types (news items, blog posts, events, etc.) and custom types defined through the CMS content model. The API follows OData conventions for filtering, sorting, and pagination. Authentication is handled via forms-based authentication or token-based auth depending on the Sitefinity configuration.\n\nContact Support:\n Name: Progress Sitefinity Support",
+      "type": "text/plain"
+    }
+  }
+}
