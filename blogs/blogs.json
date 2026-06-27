@@ -3,16 +3,12 @@
   "feeds": [
     {
       "source": "https://www.progress.com/blogs/sitefinity",
-      "feed_url": "https://www.progress.com/blogs/sitefinity",
-      "title": "",
-      "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api",
-      "error": "HTTPError"
+      "feed_url": "",
+      "saved": 2,
+      "method": "agent-scrape"
     }
   ],
-  "post_count": 1,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 5,
+  "fetched": "2026-06-27T13:10:11Z",
+  "agent_pulled": "2026-06-27"
 }
