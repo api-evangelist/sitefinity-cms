@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sitefinity-cms-content-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - cookie
+schemes:
+- name: cookieAuth
+  type: apiKey
+  in: cookie
+  parameter: .ASPXAUTH
+  description: Sitefinity CMS uses ASP.NET forms authentication. Authenticate via the /Sitefinity/Authenticate/SWT
+    endpoint to obtain a token, or use the /api/default/Authenticate endpoint for REST token-based
+    auth.
+  sources:
+  - openapi/sitefinity-cms-content-api-openapi.yml

@@ -99,6 +99,14 @@ apis:
       - url: https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api
         type: Documentation
 common:
+  - type: TrustCenter
+    url: security/sitefinity-cms-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/sitefinity-cms-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/sitefinity-cms-domain-security.yml
+  - type: Authentication
+    url: authentication/sitefinity-cms-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/sitefinity
   - type: LinkedIn
