@@ -99,6 +99,8 @@ apis:
       - url: https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api
         type: Documentation
 common:
+  - type: AgenticAccess
+    url: agentic-access/sitefinity-cms-agentic-access.yml
   - type: TrustCenter
     url: security/sitefinity-cms-trust-center.yml
   - type: VulnerabilityDisclosure
