@@ -1,0 +1,18 @@
+{
+  "provider": "sitefinity-cms",
+  "sources": [
+    "sitefinity-cms-blog-posts-api-openapi.yml",
+    "sitefinity-cms-events-api-openapi.yml",
+    "sitefinity-cms-news-items-api-openapi.yml"
+  ],
+  "outputs": [
+    "sitefinity-cms-blog-posts-api-openapi.yml",
+    "sitefinity-cms-events-api-openapi.yml",
+    "sitefinity-cms-news-items-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
