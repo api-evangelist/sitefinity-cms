@@ -161,8 +161,6 @@ common:
     url: rules/sitefinity-cms-rules.yml
   - type: Vocabulary
     url: vocabulary/sitefinity-cms-vocabulary.yml
-  - type: Capabilities
-    url: capabilities/content-management.yaml
   - type: Integrations
     url: https://www.progress.com/partners
 integrations:
