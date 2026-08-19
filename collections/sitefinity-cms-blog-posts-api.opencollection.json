@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sitefinity CMS Content Blog Posts API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": ".ASPXAUTH",
+      "value": "{{.ASPXAUTH}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blog Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Blog Posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{site}.sitefinity.com/api/default/blogposts",
+            "params": [
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return (OData $top)"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip for pagination (OData $skip)"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Published')"
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "OData orderby clause (e.g., PublicationDate desc)"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of blog post content items. Supports OData query options for filtering by blog, author, date range, and status."
+        },
+        {
+          "info": {
+            "name": "Create Blog Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{site}.sitefinity.com/api/default/blogposts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new blog post content item in draft state."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
