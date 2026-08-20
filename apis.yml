@@ -55,6 +55,11 @@ apis:
   humanURL: https://www.progress.com/documentation/sitefinity-cms/for-developers-roles-api
   baseURL: https://your-site.sitefinity.com/api/default
   tags:
+  - User
+  - Roles
+  - Identity
+  - REST
+  tags_raw:
   - Users
   - Roles
   - Identity
@@ -88,6 +93,11 @@ apis:
   humanURL: https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api
   baseURL: https://your-site.sitefinity.com/api/default
   tags:
+  - taxonomies
+  - Classification
+  - Content Management
+  - REST
+  tags_raw:
   - Taxonomies
   - Classification
   - Content Management
@@ -113,6 +123,8 @@ apis:
   humanURL: https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api
   baseURL: https://your-site.sitefinity.com/api/default
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
