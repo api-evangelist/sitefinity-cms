@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Sitefinity CMS Content Blog Posts API
   description: The Sitefinity CMS Content API provides RESTful access to all content types defined in a Sitefinity instance. It exposes endpoints for creating, reading, updating, deleting, publishing, and unpublishing content items across all dynamic content types (news items, blog posts, events, etc.) and custom types defined through the CMS content model. The API follows OData conventions for filtering, sorting, and pagination. Authentication is handled via forms-based authentication or token-based auth depending on the Sitefinity configuration.
@@ -65,7 +65,66 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: The request body or parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication is required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    skip:
+      name: $skip
+      in: query
+      description: Number of items to skip for pagination (OData $skip)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    orderby:
+      name: $orderby
+      in: query
+      description: OData orderby clause (e.g., PublicationDate desc)
+      required: false
+      schema:
+        type: string
+    filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g., Status eq 'Published')
+      required: false
+      schema:
+        type: string
+    top:
+      name: $top
+      in: query
+      description: Maximum number of items to return (OData $top)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 50
   schemas:
+    ContentItemListResponse:
+      type: object
+      description: A paginated list of content items
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+          description: Array of content items
+        '@odata.count':
+          type: integer
+          description: Total count of items matching the query
     CreateContentItemRequest:
       type: object
       description: Request body for creating or updating a content item
@@ -149,65 +208,6 @@ components:
             message:
               type: string
               description: Human-readable error message
-    ContentItemListResponse:
-      type: object
-      description: A paginated list of content items
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentItem'
-          description: Array of content items
-        '@odata.count':
-          type: integer
-          description: Total count of items matching the query
-  responses:
-    Unauthorized:
-      description: Authentication is required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body or parameters are invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    skip:
-      name: $skip
-      in: query
-      description: Number of items to skip for pagination (OData $skip)
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    filter:
-      name: $filter
-      in: query
-      description: OData filter expression (e.g., Status eq 'Published')
-      required: false
-      schema:
-        type: string
-    orderby:
-      name: $orderby
-      in: query
-      description: OData orderby clause (e.g., PublicationDate desc)
-      required: false
-      schema:
-        type: string
-    top:
-      name: $top
-      in: query
-      description: Maximum number of items to return (OData $top)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 50
   securitySchemes:
     cookieAuth:
       type: apiKey

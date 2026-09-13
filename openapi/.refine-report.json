@@ -13,6 +13,11 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "sitefinity-cms-blog-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sitefinity-cms-events-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sitefinity-cms-news-items-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

@@ -193,3 +193,5 @@ integrations:
   - name: Partner Login
   - name: Deal Registration New
   - name: Distributor
+x-parent: progress-software
+x-relationship: product
