@@ -1,9 +1,7 @@
 {
   "provider": "sitefinity-cms",
   "sources": [
-    "sitefinity-cms-blog-posts-api-openapi.yml",
-    "sitefinity-cms-events-api-openapi.yml",
-    "sitefinity-cms-news-items-api-openapi.yml"
+    "_original/sitefinity-cms-content-api-openapi.yml"
   ],
   "outputs": [
     "sitefinity-cms-blog-posts-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sitefinity-cms-blog-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "sitefinity-cms-events-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "sitefinity-cms-news-items-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sitefinity-cms-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "sitefinity-cms-blog-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sitefinity-cms-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sitefinity-cms-news-items-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
