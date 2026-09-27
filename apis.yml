@@ -91,6 +91,11 @@ apis:
   tags:
   - Media
   - Digital Assets
+  - Library
+  - REST
+  tags_raw:
+  - Media
+  - Digital Assets
   - Libraries
   - REST
   properties:

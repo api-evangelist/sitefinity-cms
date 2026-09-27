@@ -150,38 +150,56 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: The request body or parameters are invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested content item was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication is required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    skip:
+      name: $skip
+      in: query
+      description: Number of items to skip for pagination (OData $skip)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g., Status eq 'Published')
+      required: false
+      schema:
+        type: string
+    top:
+      name: $top
+      in: query
+      description: Maximum number of items to return (OData $top)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 50
+    select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return
+      required: false
+      schema:
+        type: string
+    contentId:
+      name: id
+      in: path
+      description: The unique GUID identifier of the content item
+      required: true
+      schema:
+        type: string
+        format: uuid
+    orderby:
+      name: $orderby
+      in: query
+      description: OData orderby clause (e.g., PublicationDate desc)
+      required: false
+      schema:
+        type: string
   schemas:
-    ContentOperationRequest:
-      type: object
-      description: Request body for content lifecycle operations
-      required:
-      - operation
-      properties:
-        operation:
-          type: string
-          enum:
-          - Publish
-          - Unpublish
-          description: The lifecycle operation to perform
     CreateContentItemRequest:
       type: object
       description: Request body for creating or updating a content item
@@ -204,6 +222,31 @@ components:
           type: string
           format: date-time
           description: Scheduled publication date
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+    ContentOperationRequest:
+      type: object
+      description: Request body for content lifecycle operations
+      required:
+      - operation
+      properties:
+        operation:
+          type: string
+          enum:
+          - Publish
+          - Unpublish
+          description: The lifecycle operation to perform
     ContentItem:
       type: object
       description: A Sitefinity CMS content item
@@ -252,19 +295,6 @@ components:
           items:
             type: string
           description: Categories assigned to the content item
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
     ContentItemListResponse:
       type: object
       description: A paginated list of content items
@@ -277,55 +307,25 @@ components:
         '@odata.count':
           type: integer
           description: Total count of items matching the query
-  parameters:
-    contentId:
-      name: id
-      in: path
-      description: The unique GUID identifier of the content item
-      required: true
-      schema:
-        type: string
-        format: uuid
-    top:
-      name: $top
-      in: query
-      description: Maximum number of items to return (OData $top)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 50
-    select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return
-      required: false
-      schema:
-        type: string
-    filter:
-      name: $filter
-      in: query
-      description: OData filter expression (e.g., Status eq 'Published')
-      required: false
-      schema:
-        type: string
-    orderby:
-      name: $orderby
-      in: query
-      description: OData orderby clause (e.g., PublicationDate desc)
-      required: false
-      schema:
-        type: string
-    skip:
-      name: $skip
-      in: query
-      description: Number of items to skip for pagination (OData $skip)
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+  responses:
+    Unauthorized:
+      description: Authentication is required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested content item was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body or parameters are invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     cookieAuth:
       type: apiKey
