@@ -150,68 +150,41 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    skip:
-      name: $skip
-      in: query
-      description: Number of items to skip for pagination (OData $skip)
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    top:
-      name: $top
-      in: query
-      description: Maximum number of items to return (OData $top)
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 50
-    select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return
-      required: false
-      schema:
-        type: string
-    contentId:
-      name: id
-      in: path
-      description: The unique GUID identifier of the content item
-      required: true
-      schema:
-        type: string
-        format: uuid
-    filter:
-      name: $filter
-      in: query
-      description: OData filter expression (e.g., Status eq 'Published')
-      required: false
-      schema:
-        type: string
-    orderby:
-      name: $orderby
-      in: query
-      description: OData orderby clause (e.g., PublicationDate desc)
-      required: false
-      schema:
-        type: string
   schemas:
-    ContentOperationRequest:
+    CreateContentItemRequest:
       type: object
-      description: Request body for content lifecycle operations
+      description: Request body for creating or updating a content item
       required:
-      - operation
+      - Title
       properties:
-        operation:
+        Title:
           type: string
-          enum:
-          - Publish
-          - Unpublish
-          description: The lifecycle operation to perform
+          description: Title of the content item
+        Content:
+          type: string
+          description: Main content body in HTML
+        Summary:
+          type: string
+          description: Short summary or excerpt
+        UrlName:
+          type: string
+          description: URL-friendly name for routing
+        PublicationDate:
+          type: string
+          format: date-time
+          description: Scheduled publication date
+    ContentItemListResponse:
+      type: object
+      description: A paginated list of content items
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+          description: Array of content items
+        '@odata.count':
+          type: integer
+          description: Total count of items matching the query
     ErrorResponse:
       type: object
       description: Error response
@@ -225,18 +198,6 @@ components:
             message:
               type: string
               description: Human-readable error message
-    ContentItemListResponse:
-      type: object
-      description: A paginated list of content items
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentItem'
-          description: Array of content items
-        '@odata.count':
-          type: integer
-          description: Total count of items matching the query
     ContentItem:
       type: object
       description: A Sitefinity CMS content item
@@ -285,31 +246,70 @@ components:
           items:
             type: string
           description: Categories assigned to the content item
-    CreateContentItemRequest:
+    ContentOperationRequest:
       type: object
-      description: Request body for creating or updating a content item
+      description: Request body for content lifecycle operations
       required:
-      - Title
+      - operation
       properties:
-        Title:
+        operation:
           type: string
-          description: Title of the content item
-        Content:
-          type: string
-          description: Main content body in HTML
-        Summary:
-          type: string
-          description: Short summary or excerpt
-        UrlName:
-          type: string
-          description: URL-friendly name for routing
-        PublicationDate:
-          type: string
-          format: date-time
-          description: Scheduled publication date
+          enum:
+          - Publish
+          - Unpublish
+          description: The lifecycle operation to perform
+  parameters:
+    orderby:
+      name: $orderby
+      in: query
+      description: OData orderby clause (e.g., PublicationDate desc)
+      required: false
+      schema:
+        type: string
+    select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return
+      required: false
+      schema:
+        type: string
+    contentId:
+      name: id
+      in: path
+      description: The unique GUID identifier of the content item
+      required: true
+      schema:
+        type: string
+        format: uuid
+    filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g., Status eq 'Published')
+      required: false
+      schema:
+        type: string
+    skip:
+      name: $skip
+      in: query
+      description: Number of items to skip for pagination (OData $skip)
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    top:
+      name: $top
+      in: query
+      description: Maximum number of items to return (OData $top)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 50
   responses:
-    BadRequest:
-      description: The request body or parameters are invalid
+    Unauthorized:
+      description: Authentication is required
       content:
         application/json:
           schema:
@@ -320,8 +320,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication is required
+    BadRequest:
+      description: The request body or parameters are invalid
       content:
         application/json:
           schema:
