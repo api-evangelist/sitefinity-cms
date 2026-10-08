@@ -161,6 +161,12 @@ apis:
   - type: Documentation
     url: https://www.progress.com/documentation/sitefinity-cms/for-developers-rest-api
 common:
+  - type: Plans
+    url: plans/sitefinity-cms-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/sitefinity-cms-rate-limits.yml
+  - type: FinOps
+    url: finops/sitefinity-cms-finops.yml
   - type: AgenticAccess
     url: agentic-access/sitefinity-cms-agentic-access.yml
   - type: TrustCenter
